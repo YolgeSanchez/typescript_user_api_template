@@ -1,7 +1,7 @@
 import { model, Schema } from 'mongoose'
-import { IAuth } from './auth.interfaces'
+import { IUser } from './auth.interfaces'
 
-const userSchema = new Schema<IAuth>(
+const userSchema = new Schema<IUser>(
   {
     name: {
       type: String,
@@ -16,7 +16,7 @@ const userSchema = new Schema<IAuth>(
       type: String,
       required: true,
       select: false, // this will exclude password from being returned when user is fetched
-    }, // replace or add each field for your register model
+    }, // replace or add each field for your user model
   },
   {
     timestamps: true,
