@@ -14,7 +14,7 @@ const createUser = async (user: IAuth) => {
   // create the user and save it
   try {
     const newUser = await insertUser({ ...user, password })
-    return await newUser.save()
+    return newUser
   } catch (error) {
     throw new AppError('SERVER_INTERNAL_ERROR_CREATING_USER', 500)
   }
