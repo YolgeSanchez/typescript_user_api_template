@@ -4,8 +4,7 @@ import { AnyZodObject, ZodError } from 'zod'
 export const validate =
   (schema: AnyZodObject) => (req: Request, res: Response, next: NextFunction) => {
     try {
-      const result = schema.parse(req.body)
-      console.log({ 'in controller': result })
+      schema.parse(req.body)
       next()
     } catch (error) {
       if (error instanceof ZodError) {
