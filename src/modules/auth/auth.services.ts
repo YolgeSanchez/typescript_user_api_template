@@ -14,7 +14,13 @@ const createUser = async (user: IUser) => {
   // create the user and save it
   try {
     const insertedUser = await insertUser({ ...user, password })
-    return insertedUser
+    // change this if you add more files that you want to return
+    const publicUserData = {
+      id: insertedUser._id,
+      name: insertedUser.name,
+      email: insertedUser.email,
+    }
+    return publicUserData
   } catch (error) {
     throw new AppError('SERVER_INTERNAL_ERROR_CREATING_USER', 500)
   }
