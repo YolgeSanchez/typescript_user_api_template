@@ -29,26 +29,22 @@ class AuthService {
   }
 
   authUser = async (user: IAuth) => {
-    try {
-      // verify user with this email exists
-      const userInDB = await AuthRepository.getByEmailAuth(user.email)
-      if (!userInDB) throw new AppError('ACCOUNT_NOT_FOUND', 404)
+    // verify user with this email exists
+    const userInDB = await AuthRepository.getByEmailAuth(user.email)
+    if (!userInDB) throw new AppError('ACCOUNT_NOT_FOUND', 404)
 
-      // verify password provided
-      const hash = userInDB.password
-      const isPasswordCorrect = await verified(user.password, hash)
-      if (!isPasswordCorrect) throw new AppError('WRONG_PASSWORD', 401)
+    // verify password provided
+    const hash = userInDB.password
+    const isPasswordCorrect = await verified(user.password, hash)
+    if (!isPasswordCorrect) throw new AppError('WRONG_PASSWORD', 401)
 
-      // change this if you add more files that you want to return
-      const publicUserData = {
-        id: userInDB._id,
-        name: userInDB.name,
-        email: userInDB.email,
-      }
-      return publicUserData
-    } catch (error) {
-      throw new AppError('SERVER_INTERNAL_ERROR_AUTHENTICATING_USER', 500)
+    // change this if you add more files that you want to return
+    const publicUserData = {
+      id: userInDB._id,
+      name: userInDB.name,
+      email: userInDB.email,
     }
+    return publicUserData
   }
 }
 
