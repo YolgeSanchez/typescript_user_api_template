@@ -7,6 +7,7 @@ class AuthRepository {
   getUser = (id: string) => User.findById(id)
   deleteUser = (id: string) => User.findByIdAndDelete(id)
   getByEmail = (email: string) => User.findOne({ email })
+  getByEmailAuth = (email: string) => User.findOne({ email }).select('+password')
   updateUser = (id: string, updatedUser: IUser) =>
     User.findByIdAndUpdate(id, updatedUser, { new: true })
 }
