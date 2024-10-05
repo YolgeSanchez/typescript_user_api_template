@@ -1,14 +1,16 @@
 import { Router } from 'express'
-import { registerController } from './auth.controllers'
 import { validate } from '../../middlewares/dataValidation'
-import { registerSchema } from './auth.schemas'
+import { authSchema, registerSchema } from './auth.schemas'
+import AuthController from './auth.controllers'
 
 const router = Router()
 
 /**
- * authentication routes
+ * [authentication routes]
  * http://localhost:3001/api/auth/register [POST]
+ * http://localhost:3001/api/auth/login [POST]
  */
-router.post('/register', validate(registerSchema), registerController)
+router.post('/register', validate(registerSchema), AuthController.register)
+router.post('/login', validate(authSchema), AuthController.login)
 
 export default router
