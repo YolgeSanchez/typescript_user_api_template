@@ -10,3 +10,9 @@ export interface IAuth {
   password: string
   // replace or add any field you want for your authentication interface
 }
+
+export interface IPublicUserData {
+  id: string
+  name: string
+  email: string
+}
