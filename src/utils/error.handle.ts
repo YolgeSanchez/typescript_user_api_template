@@ -1,5 +1,5 @@
 import { Response } from 'express'
-import { AppError } from './errors'
+import { AppError } from '../types/errors'
 
 const handleHttpError = (res: Response, error: AppError, customMessage?: string) => {
   console.log(error)
