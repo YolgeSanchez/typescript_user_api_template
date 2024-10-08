@@ -1,6 +1,6 @@
 import authServices from '../modules/auth/auth.services'
 import handleHttpError from '../utils/error.handle'
-import { AppError } from '../utils/errors'
+import { AppError } from '../types/errors'
 import jwtUtils from '../utils/jwt.handle'
 import { NextFunction, Response } from 'express'
 import { RequestExt } from '../types/express'
