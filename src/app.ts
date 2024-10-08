@@ -1,8 +1,10 @@
 import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
-import authRoutes from './modules/auth/auth.routes'
 import cookieParser from 'cookie-parser'
+
+import authRoutes from './modules/auth/auth.routes'
+import userRoutes from './modules/users/users.routes'
 
 const app = express()
 
@@ -14,6 +16,7 @@ app.use(cookieParser())
 
 // [routes]
 app.use('/api/auth', authRoutes)
+app.use('/api/users', userRoutes)
 // add all the other routes for your api
 
 // export the express app
