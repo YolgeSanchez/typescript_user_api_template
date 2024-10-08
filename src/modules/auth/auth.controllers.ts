@@ -1,7 +1,8 @@
 import { Request, Response } from 'express'
-import { IAuth, IPublicUserData, IUser } from './auth.interfaces'
+import { IAuth } from './auth.interfaces'
+import { IUser } from '../users/users.interfaces'
 import handleHttpError from '../../utils/error.handle'
-import { AppError } from '../../utils/errors'
+import { AppError } from '../../types/errors'
 import AuthService from './auth.services'
 import jwtUtils from '../../utils/jwt.handle'
 
@@ -26,6 +27,12 @@ class AuthController {
     } catch (error) {
       handleHttpError(res, error as AppError)
     }
+  }
+
+  // logout user
+  logout = (_: Request, res: Response) => {
+    res.clearCookie('token')
+    res.status(200).send('Logged out')
   }
 }
 
