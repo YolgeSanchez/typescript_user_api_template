@@ -1,11 +1,12 @@
-import { IAuth, IPublicUserData, IUser } from './auth.interfaces'
+import { IPublicAuthData, IAuth } from './auth.interfaces'
+import { IUser } from '../users/users.interfaces'
 import { encrypt, verified } from '../../utils/bcrypt.handle'
-import { AppError } from '../../utils/errors'
+import { AppError } from '../../types/errors'
 import AuthRepository from './auth.repository'
 
 class AuthService {
   // create user service
-  createUser = async (user: IUser): Promise<IPublicUserData> => {
+  createUser = async (user: IUser): Promise<IPublicAuthData> => {
     // verify not existing user with this email
     const isEmailInUse = await AuthRepository.getByEmail(user.email)
     if (isEmailInUse) throw new AppError('EMAIL_ALREADY_IN_USE', 409)
@@ -28,7 +29,7 @@ class AuthService {
     }
   }
 
-  authUser = async (user: IAuth): Promise<IPublicUserData> => {
+  authUser = async (user: IAuth): Promise<IPublicAuthData> => {
     // verify user with this email exists
     const userInDB = await AuthRepository.getByEmailAuth(user.email)
     if (!userInDB) throw new AppError('ACCOUNT_NOT_FOUND', 404)
@@ -47,7 +48,7 @@ class AuthService {
     return publicUserData
   }
 
-  getUser = async (id: string): Promise<IPublicUserData> => {
+  getUser = async (id: string): Promise<IPublicAuthData> => {
     const userInDB = await AuthRepository.getUser(id)
     if (!userInDB) throw new AppError('USER_NOT_FOUND', 404)
 
