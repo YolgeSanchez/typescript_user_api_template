@@ -16,6 +16,12 @@ const userSchema = new Schema<IUser>(
       type: String,
       required: true,
       select: false, // this will exclude password from being returned when user is fetched
+    },
+    role: {
+      type: String,
+      required: true,
+      enum: ['user', 'admin'],
+      default: 'user',
     }, // replace or add each field for your user model
   },
   {

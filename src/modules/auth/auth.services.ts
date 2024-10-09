@@ -5,30 +5,6 @@ import { AppError } from '../../types/errors'
 import AuthRepository from './auth.repository'
 
 class AuthService {
-  // create user service
-  createUser = async (user: IUser): Promise<IPublicAuthData> => {
-    // verify not existing user with this email
-    const isEmailInUse = await AuthRepository.getByEmail(user.email)
-    if (isEmailInUse) throw new AppError('EMAIL_ALREADY_IN_USE', 409)
-
-    // hashed password
-    const password = await encrypt(user.password)
-
-    // create the user and save it
-    try {
-      const insertedUser = await AuthRepository.insertUser({ ...user, password })
-      // change this if you add more files that you want to return
-      const publicUserData = {
-        id: insertedUser._id.toHexString(),
-        name: insertedUser.name,
-        email: insertedUser.email,
-      }
-      return publicUserData
-    } catch (error) {
-      throw new AppError('SERVER_INTERNAL_ERROR_CREATING_USER', 500)
-    }
-  }
-
   authUser = async (user: IAuth): Promise<IPublicAuthData> => {
     // verify user with this email exists
     const userInDB = await AuthRepository.getByEmailAuth(user.email)
@@ -44,6 +20,7 @@ class AuthService {
       id: userInDB._id.toHexString(),
       name: userInDB.name,
       email: userInDB.email,
+      role: userInDB.role,
     }
     return publicUserData
   }
@@ -57,6 +34,7 @@ class AuthService {
       id: userInDB._id.toHexString(),
       name: userInDB.name,
       email: userInDB.email,
+      role: userInDB.role,
     }
     return userData
   }

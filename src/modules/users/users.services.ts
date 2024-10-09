@@ -1,6 +1,7 @@
 import UserRepository from './users.repository'
 import { IPublicUserData, IUser } from './users.interfaces'
 import { AppError } from '../../types/errors'
+import { encrypt } from '../../utils/bcrypt.handle'
 
 class UserServices {
   getUser = async (id: string): Promise<IPublicUserData> => {
@@ -12,6 +13,7 @@ class UserServices {
         id: userInDB._id.toHexString(),
         name: userInDB.name,
         email: userInDB.email,
+        role: userInDB.role,
       }
       return userData
     } catch (error) {
@@ -29,6 +31,7 @@ class UserServices {
         id: user._id.toHexString(),
         name: user.name,
         email: user.email,
+        role: user.role,
       }
       return userData
     })
@@ -45,6 +48,7 @@ class UserServices {
         id: user._id.toHexString(),
         name: user.name,
         email: user.email,
+        role: user.role,
       }
       return publicUserData
     } catch (error) {
@@ -62,10 +66,36 @@ class UserServices {
         id: user._id.toHexString(),
         name: user.name,
         email: user.email,
+        role: user.role,
       }
       return publicUserData
     } catch (error) {
       throw new AppError('USER_NOT_FOUND', 404)
+    }
+  }
+
+  // create user service
+  createUser = async (user: IUser): Promise<IPublicUserData> => {
+    // verify not existing user with this email
+    const isEmailInUse = await UserRepository.getByEmail(user.email)
+    if (isEmailInUse) throw new AppError('EMAIL_ALREADY_IN_USE', 409)
+
+    // hashed password
+    const password = await encrypt(user.password)
+
+    // create the user and save it
+    try {
+      const insertedUser = await UserRepository.insertUser({ ...user, password })
+      // change this if you add more files that you want to return
+      const publicUserData = {
+        id: insertedUser._id.toHexString(),
+        name: insertedUser.name,
+        email: insertedUser.email,
+        role: insertedUser.role,
+      }
+      return publicUserData
+    } catch (error) {
+      throw new AppError('SERVER_INTERNAL_ERROR_CREATING_USER', 500)
     }
   }
 }
