@@ -1,5 +1,6 @@
 import UserServices from './users.services'
 import handleHttpError from '../../utils/error.handle'
+import jwtUtils from '../../utils/jwt.handle'
 import { AppError } from '../../types/errors'
 import { Request, Response } from 'express'
 import { IUser } from './users.interfaces'
@@ -41,6 +42,16 @@ class UserController {
     try {
       const user = await UserServices.deleteUser(req.params.id)
       res.status(200).send(user)
+    } catch (error) {
+      handleHttpError(res, error as AppError)
+    }
+  }
+
+  // register user
+  createUser = async (req: Request<unknown, unknown, IUser>, res: Response) => {
+    try {
+      const registeredUser = await UserServices.createUser(req.body)
+      res.status(201).send(registeredUser)
     } catch (error) {
       handleHttpError(res, error as AppError)
     }
