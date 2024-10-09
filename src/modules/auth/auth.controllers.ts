@@ -32,7 +32,7 @@ class AuthController {
   // logout user
   logout = (_: Request, res: Response) => {
     res.clearCookie('token')
-    res.status(200).send('Logged out')
+    res.status(200).send({ message: 'LOGGED_OUT' })
   }
 }
 
