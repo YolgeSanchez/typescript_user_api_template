@@ -2,6 +2,7 @@ import UserServices from './users.services'
 import handleHttpError from '../../utils/error.handle'
 import { AppError } from '../../types/errors'
 import { Request, Response } from 'express'
+import { IUser } from './users.interfaces'
 
 class UserController {
   // get all users
@@ -18,6 +19,27 @@ class UserController {
   getUser = async (req: Request, res: Response) => {
     try {
       const user = await UserServices.getUser(req.params.id)
+      res.status(200).send(user)
+    } catch (error) {
+      handleHttpError(res, error as AppError)
+    }
+  }
+
+  // update a user
+  updateUser = async (req: Request<any, any, IUser>, res: Response) => {
+    try {
+      const updatedUser = req.body
+      const user = await UserServices.updateUser(req.params.id, updatedUser)
+      res.status(200).send(user)
+    } catch (error) {
+      handleHttpError(res, error as AppError)
+    }
+  }
+
+  // delete a user
+  deleteUser = async (req: Request, res: Response) => {
+    try {
+      const user = await UserServices.deleteUser(req.params.id)
       res.status(200).send(user)
     } catch (error) {
       handleHttpError(res, error as AppError)
