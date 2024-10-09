@@ -78,4 +78,28 @@ describe('User API', () => {
     expect(response.status).toBe(404)
     expect(response.body).toEqual({ message: 'USER_NOT_FOUND' })
   })
+
+  it('should return status 200 when updating a user with token', async () => {
+    const response = await request(app).put(`/api/users/${id}`).set('Cookie', token).send({
+      name: 'new jane doe',
+      email: 'newjanedoe@example.com',
+      password: 'example',
+    })
+    expect(response.status).toBe(200)
+    expect(response.body).toEqual({
+      id,
+      name: 'new jane doe',
+      email: 'newjanedoe@example.com',
+    })
+  })
+
+  it('should return status 200 when deleting a user with token', async () => {
+    const response = await request(app).delete(`/api/users/${id}`).set('Cookie', token)
+    expect(response.status).toBe(200)
+    expect(response.body).toEqual({
+      id,
+      name: 'new jane doe',
+      email: 'newjanedoe@example.com',
+    })
+  })
 })
