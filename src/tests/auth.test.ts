@@ -88,4 +88,10 @@ describe('User Login API', () => {
     expect(response.status).toBe(404)
     expect(response.body).toEqual({ message: 'ACCOUNT_NOT_FOUND' })
   })
+
+  it('should return 200 when logging out', async () => {
+    const response = await request(app).get('/api/auth/logout')
+    expect(response.status).toBe(200)
+    expect(response.body).toEqual({ message: 'LOGGED_OUT' })
+  })
 })
