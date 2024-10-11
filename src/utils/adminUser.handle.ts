@@ -2,7 +2,14 @@ import UserRepository from '../modules/users/users.repository'
 import { IUser } from '../modules/users/users.interfaces'
 import { encrypt } from './bcrypt.handle'
 
-const initAdminUser = async () => {
+interface IAdminUser {
+  name: string
+  email: string
+  password: string
+  role: string
+}
+
+const initAdminUser = async (): Promise<IAdminUser | undefined> => {
   try {
     const users = await UserRepository.getUsers()
     let adminExists = false
@@ -23,8 +30,20 @@ const initAdminUser = async () => {
 
       await UserRepository.insertUser(defaultAdmin)
       console.log('Admin user created successfully.')
-    } else {
-      console.log('Admin user already exists.')
+      return {
+        name: 'Admin',
+        email: 'admin@admin.com',
+        password: 'admin1234',
+        role: 'admin',
+      }
+    }
+    console.log('Admin user already exists.')
+    console.log(users[0])
+    return {
+      name: users[0].name,
+      email: users[0].email,
+      password: 'admin1234',
+      role: users[0].role,
     }
   } catch (error) {
     console.error('Error initializing admin user:', error)
