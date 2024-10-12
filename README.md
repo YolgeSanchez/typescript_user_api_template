@@ -114,12 +114,14 @@ The modular structure keeps the code organized, making it easier to scale and ma
 ## 🌐 API Endpoints
 Here's a brief overview of the main API endpoints:
 
+[only in role model]
 - POST /api/auth/register: Register a new user
 - POST /api/auth/login: Authenticate a user
-- GET /api/users: Get all users (requires authentication)
-- GET /api/users/:id: Get a specific user (requires authentication)
-- PUT /api/users/:id: Update a user (requires authentication)
-- DELETE /api/users/:id: Delete a user (requires authentication)
+- GET /api/users: Get all users (requires authentication) [admin & user]
+- GET /api/users/:id: Get a specific user (requires authentication) [admin & user]
+- POST /api/users/ Create a new user (requires authenticatino) [admin only]
+- PUT /api/users/:id: Update a user (requires authentication) [admin only]
+- DELETE /api/users/:id: Delete a user (requires authentication) [admin only]
 
 ## 🛠️ Technologies Used
 - Node.js
