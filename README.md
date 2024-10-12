@@ -16,8 +16,8 @@ Welcome to the TypeScript Reusable User API Template! This project provides a ro
 ### Clone the Repository
 
 ```
-git clone https://github.com/YolgeSanchez/typescript_reusable_user_api.git
-cd typescript_reusable_user_api
+git clone https://github.com/YolgeSanchez/typescript_user_api_template.git
+cd typescript_user_api_template
 ```
 
 ### Install Dependencies
@@ -73,7 +73,7 @@ git checkout v2.0-role-based-access-control-model
 Alternatively, if you want to start with the non-role-based model from the beginning:
 
 ```
-git clone -b v1.0-not-role-based-api-model https://github.com/YolgeSanchez/typescript_reusable_user_api.git
+git clone -b v1.0-not-role-based-api-model https://github.com/YolgeSanchez/typescript_user_api_template.git
 ```
 
 ## 💻 Getting Started for Development
@@ -152,7 +152,7 @@ Feel free to modify and extend this template to fit your specific needs. The mod
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check [issues page](https://github.com/YolgeSanchez/typescript_reusable_user_api/issues).
+Contributions, issues, and feature requests are welcome! Feel free to check [issues page](https://github.com/YolgeSanchez/typescript_user_api_template/issues).
 
 ## 📝 License
 
