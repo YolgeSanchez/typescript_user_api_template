@@ -62,6 +62,12 @@ By default, this template includes role-based access control (RBAC). However, if
 git checkout v1.0-not-role-based-api-model
 ```
 
+In case that you want to return to the role-based access control (RBAC) you can easily return to it with:
+
+```
+git checkout v2.0-role-based-access-control-model
+```
+
 Alternatively, if you want to start with the non-role-based model from the beginning:
 
 ```
@@ -114,14 +120,14 @@ The modular structure keeps the code organized, making it easier to scale and ma
 ## 🌐 API Endpoints
 Here's a brief overview of the main API endpoints:
 
-[only in role model]
+[ only in role model ]
 - POST /api/auth/register: Register a new user
 - POST /api/auth/login: Authenticate a user
-- GET /api/users: Get all users (requires authentication) [admin & user]
-- GET /api/users/:id: Get a specific user (requires authentication) [admin & user]
-- POST /api/users/ Create a new user (requires authenticatino) [admin only]
-- PUT /api/users/:id: Update a user (requires authentication) [admin only]
-- DELETE /api/users/:id: Delete a user (requires authentication) [admin only]
+- GET /api/users: Get all users (requires authentication) [ admin & user ]
+- GET /api/users/:id: Get a specific user (requires authentication) [ admin & user ]
+- POST /api/users/ Create a new user (requires authenticatino) [ admin only ]
+- PUT /api/users/:id: Update a user (requires authentication) [ admin only ]
+- DELETE /api/users/:id: Delete a user (requires authentication) [ admin only ]
 
 ## 🛠️ Technologies Used
 - Node.js
