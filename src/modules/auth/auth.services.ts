@@ -1,6 +1,5 @@
 import { IPublicAuthData, IAuth } from './auth.interfaces'
-import { IUser } from '../users/users.interfaces'
-import { encrypt, verified } from '../../utils/bcrypt.handle'
+import { verified } from '../../utils/bcrypt.handle'
 import { AppError } from '../../types/errors'
 import AuthRepository from './auth.repository'
 
