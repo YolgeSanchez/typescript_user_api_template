@@ -41,11 +41,13 @@ JWT_SECRET = "<your_jwt_secret_key>"
 ```
 npm start
 ```
+
 The server will be running on the port you specified in your .env file.
 
 ### Run Tests
 
 The project includes tests to ensure that the functionality is working correctly. To run the tests:
+
 ```
 npm test src/tests/users.test.ts && npm test src/tests/auth.test.ts
 ```
@@ -79,7 +81,7 @@ git clone -b v1.0-not-role-based-api-model https://github.com/YolgeSanchez/types
 1. Follow the Quick Start guide to set up the project.
 2. Make sure you have Node.js (version 18 or later) and npm installed.
 3. For development, you can use the following command to run the server with hot-reloading:
-   
+
 ```
 npm run dev
 ```
@@ -93,6 +95,7 @@ npm run build
 ## 🗂️ Project structure
 
 This project follows a modular structure, which helps in organizing code for scalability and maintainability. The modular approach allows us to separate different concerns of the application, like user management, authentication, utilities, and middleware, into specific folders. Here's an overview of the structure:
+
 ```
 ├── src/
 │   ├── config/              # Database configurations
@@ -115,12 +118,15 @@ This project follows a modular structure, which helps in organizing code for sca
 ```
 
 ### Why Modular?
+
 The modular structure keeps the code organized, making it easier to scale and maintain. Each feature (like users or authentication) is in its own folder, allowing for quick updates or changes without affecting the rest of the app. It also promotes reusability—common functions and middleware can be shared across the project, avoiding duplication. Overall, this structure makes the project cleaner and more efficient to work with as it grows.
 
 ## 🌐 API Endpoints
+
 Here's a brief overview of the main API endpoints:
 
 [ only in role model ]
+
 - POST /api/auth/register: Register a new user
 - POST /api/auth/login: Authenticate a user
 - GET /api/users: Get all users (requires authentication) [ admin & user ]
@@ -130,6 +136,7 @@ Here's a brief overview of the main API endpoints:
 - DELETE /api/users/:id: Delete a user (requires authentication) [ admin only ]
 
 ## 🛠️ Technologies Used
+
 - Node.js
 - TypeScript
 - Express.js
