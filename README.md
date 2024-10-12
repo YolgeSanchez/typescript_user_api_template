@@ -47,7 +47,7 @@ The server will be running on the port you specified in your .env file.
 
 The project includes tests to ensure that the functionality is working correctly. To run the tests:
 ```
-npm test
+npm test src/tests/users.test.ts && npm test src/tests/auth.test.ts
 ```
 
 ## 📚 Usage
