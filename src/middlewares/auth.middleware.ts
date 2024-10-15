@@ -24,6 +24,3 @@ export const auth =
       handleHttpError(res, error as AppError)
     }
   }
-
-// TODO: auth with roles
-// export const auth = () => {}
